@@ -82,15 +82,17 @@ public class LoginOld extends JFrame {
 				try {
 					if(userservice.select(u1)) {
 						JOptionPane.showMessageDialog(null, "µÇÂ¼³É¹¦");
-//						setVisible(false);
+						setVisible(false);
 						u1.setOnLine(true);
 						userservice.updateUser(u1);
 						username = jt.getText();
 						new NewFrame();
+						dispose();
 					}else {
 						JOptionPane.showMessageDialog(null, "µÇÂ¼Ê§°Ü");
 						setVisible(false);
 						new LoginOld();
+
 					}
 				} catch (HeadlessException e) {
 					e.printStackTrace();
