@@ -5,7 +5,15 @@ public class Chat {
 	private String time;
 	private String text;
 	private int chatId;
-
+	private String to;
+	public Chat(String name, String time, String text, int chatId, String to) {
+		super();
+		this.name = name;
+		this.time = time;
+		this.text = text;
+		this.chatId = chatId;
+		this.to = to;
+	}
 	public Chat(String name, String time, String text, int chatId) {
 		super();
 		this.name = name;
@@ -47,6 +55,12 @@ public class Chat {
 	}
 	public void setChatId(int chatId) {
 		this.chatId = chatId;
+	}
+	public String getTo() {
+		return to;
+	}
+	public void setTo(String to) {
+		this.to = to;
 	}
 	
 }
