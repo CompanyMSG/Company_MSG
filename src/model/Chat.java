@@ -5,22 +5,15 @@ public class Chat {
 	private String time;
 	private String text;
 	private int chatId;
-	private String to;
-	public Chat(String name, String time, String text, int chatId, String to) {
+	private String toname;
+	public Chat(String name, String time, String text, String toname) {
 		super();
 		this.name = name;
 		this.time = time;
 		this.text = text;
-		this.chatId = chatId;
-		this.to = to;
+		this.toname = toname;
 	}
-	public Chat(String name, String time, String text, int chatId) {
-		super();
-		this.name = name;
-		this.time = time;
-		this.text = text;
-		this.chatId = chatId;
-	}
+	
 	public String getTime() {
 		return time;
 	}
@@ -38,12 +31,7 @@ public class Chat {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Chat(String name, String time, String text) {
-		super();
-		this.name = name;
-		this.time = time;
-		this.text = text;
-	}
+
 	public String getName() {
 		return name;
 	}
@@ -56,11 +44,11 @@ public class Chat {
 	public void setChatId(int chatId) {
 		this.chatId = chatId;
 	}
-	public String getTo() {
-		return to;
+	public String getToname() {
+		return toname;
 	}
-	public void setTo(String to) {
-		this.to = to;
+	public void setTo(String toname) {
+		this.toname = toname;
 	}
 	
 }

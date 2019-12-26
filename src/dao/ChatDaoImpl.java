@@ -1,4 +1,4 @@
-package dao;
+ package dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,8 +17,8 @@ public class ChatDaoImpl implements ChatDao{
 		int num = 0;
 		String sql = "";
 		try{
-			sql = "insert into chat(name,time,text,id,to) values(?,now(),?,1,?)";
-			num = JDBCUtils.executeUpdate(sql,chat.getName(),chat.getText(),chat.getTo());
+			sql = "insert into chat(name,time,text,toname) values(?,now(),?,?)";
+			num = JDBCUtils.executeUpdate(sql,chat.getName(),chat.getText(),chat.getToname());
 		}catch(Exception e){
 			throw e;
 		}finally{
