@@ -29,7 +29,7 @@ public class UserDaoImpl implements UserDao {
 		int num = 0;
 		String sql = "";
 		try{
-			sql = "update user set onLine=?where Username=?";
+			sql = "update user set onLine=? where Username=?";
 			num = JDBCUtils.executeUpdate(sql,user.isOnLine(),user.getUsername());
 		}catch(Exception e){
 			throw e;
@@ -54,7 +54,7 @@ public class UserDaoImpl implements UserDao {
 				user.setPassword(rs.getString("password"));
 				user.setSex(rs.getString("sex"));
 				user.setNickname(rs.getString("nickname"));
-				user.setOnLine(rs.getBoolean("onLine"));
+				user.setOnLine(rs.getInt("onLine"));
 				list.add(user);
 			}
 		}catch(Exception e){

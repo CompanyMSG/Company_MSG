@@ -83,7 +83,8 @@ public class LoginOld extends JFrame {
 					if(userservice.select(u1)) {
 						JOptionPane.showMessageDialog(null, "µÇÂ¼³É¹¦");
 						setVisible(false);
-						u1.setOnLine(true);
+						u1.setOnLine(1);
+//						System.out.println(u1);
 						userservice.updateUser(u1);
 						username = jt.getText();
 						new NewFrame();

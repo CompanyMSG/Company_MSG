@@ -119,7 +119,7 @@ public class NewFrame extends JFrame {
 				setVisible(false);
 
 				u1.setUsername(LoginOld.username);
-				u1.setOnLine(false);
+				u1.setOnLine(0);
 
 				try {
 					userservice.updateUser(u1);
@@ -185,7 +185,7 @@ public class NewFrame extends JFrame {
 					int countonline_now = 0;
 					//接收用户
 					for(int i = 0;i < userlist.size();i++){
-						if(((User)userlist.get(i)).isOnLine()){
+						if(((User)userlist.get(i)).isOnLine() == 1){
 							//显示
 							countonline_now ++;
 						}
@@ -196,7 +196,7 @@ public class NewFrame extends JFrame {
 						useronline.setText(" ");
 						for(int i = 0;i < userlist.size();i++){
 
-							if(((User)userlist.get(i)).isOnLine()){
+							if(((User)userlist.get(i)).isOnLine() == 1){
 								String line1 = "【" + ((User) userlist.get(i)).getUsername() + "】";
 								useronline.append(line1 + "\n");
 

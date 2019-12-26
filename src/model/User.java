@@ -6,8 +6,8 @@ public class User {
 	private String password;
 	private String sex;
 	private String Nickname;
-	private boolean onLine;
-	public User(int id, String username, String password, String sex, String nickname, boolean onLine) {
+	private int onLine;
+	public User(int id, String username, String password, String sex, String nickname, int onLine) {
 		super();
 		this.id = id;
 		Username = username;
@@ -69,14 +69,14 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", Username=" + Username + ", password=" + password + ", sex=" + sex + ", Nickname="
-				+ Nickname + "]";
+				+ Nickname + " " + onLine + "]";
 	}
 
-	public boolean isOnLine() {
-		return onLine;
+	public int isOnLine() {
+		return this.onLine;
 	}
 
-	public void setOnLine(boolean onLine) {
+	public void setOnLine(int onLine) {
 		this.onLine = onLine;
 	}
 	
