@@ -42,7 +42,7 @@ public class ChatDaoImpl implements ChatDao{
 				chat.setTime(rs.getString("time"));
 				chat.setText(rs.getString("text"));
 				chat.setChatId(rs.getInt("chatId"));
-				chat.setTo(rs.getString("to"));
+				chat.setTo(rs.getString("toname"));
 				list.add(chat);
 			}
 		} catch (Exception e) {

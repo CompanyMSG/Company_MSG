@@ -20,7 +20,7 @@ public class test {
 //		new NewFrame();
 //
 		ChatService chatservice=new ChatServiceImpl();
-		Chat c1=new Chat("2","","nihaoya",1,"yangyang");
+		Chat c1=new Chat("2","","nihaoya","yangyang");
 		try {
 			System.out.println(chatservice.addChat(c1));
 		} catch (SQLException e) {

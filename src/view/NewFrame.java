@@ -133,7 +133,7 @@ public class NewFrame extends JFrame {
 				SimpleDateFormat ft = new SimpleDateFormat("MM-dd hh:mm:ss");
 				String string = "【" + ft.format(dNow) + "】" + "\n" + name + "：";
 				//提交信息
-				Chat chat = new Chat(name, "", jta2.getText(),1,toname);
+				Chat chat = new Chat(name, "", jta2.getText(),toname);
 				ChatService chatservice = new ChatServiceImpl();
 				try {
 					System.out.println(chatservice.addChat(chat));
@@ -169,17 +169,23 @@ public class NewFrame extends JFrame {
 						for (int i = 0; i < list.size(); i++) {
 							chat1 = (Chat) list.get(i);
 
-							//判断序列
+							//判断时间序列 新增数据 同步
 							if((((Chat) list.get(i)).getChatId() > num)){
-							    if(((Chat) list.get(i)).getTo() == LoginOld.username || ((Chat) list.get(i)).getTo() == "all"){
-                                    String line1 = "【" + chat1.getTime() + "】\n" + chat1.getName() + " to " + chat1.getTo() + "： " + chat1.getText();
+								//判断新增数据是否与自己相关
+								//接受别人发给自己的消息 和 广播
+								System.out.println(num);
+								System.out.println(((Chat) list.get(i)).getToname().equals(LoginOld.username));
+								System.out.println(((Chat) list.get(i)).getToname().equals("all"));
+								System.out.println(((Chat) list.get(i)).getName().equals(LoginOld.username));
+
+								if(((Chat) list.get(i)).getToname().equals(LoginOld.username) || ((Chat) list.get(i)).getToname().equals("all") || ((Chat) list.get(i)).getName().equals(LoginOld.username)){
+							    	//显示
+                                    String line1 = "【" + chat1.getTime() + "】\n" + chat1.getName() + " to " + chat1.getToname() + "： " + chat1.getText();
                                     jta1.append(line1 + "\n");
                                     jta2.setText(" ");
-                                    num ++ ;
                                 }
-//							    else if(((Chat) list.get(i)).getName() == LoginOld.username){
-//
-//                                }
+							    //显示自己发给别人的消息
+								num ++ ;
 							}
 						}
 					}
@@ -195,8 +201,11 @@ public class NewFrame extends JFrame {
 	public void start() {
 		new Thread1().start();
 	}
-}
 
+	public static void main(String[] args) throws Exception {
+		new NewFrame();
+	}
+}
 
 
 

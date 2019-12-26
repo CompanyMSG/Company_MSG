@@ -19,7 +19,7 @@ import service.UserService;
 import service.UserServiceImpl;
 
 public class LoginOld extends JFrame {
-	public static String username = "yangda";
+	public static String username = "hello";
 	private JTextField jt;//定义文本框组件
 	private JPasswordField password;//密码框
 	private JLabel jLabel1,jLabel2;

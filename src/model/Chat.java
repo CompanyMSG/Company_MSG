@@ -50,5 +50,10 @@ public class Chat {
 	public void setTo(String toname) {
 		this.toname = toname;
 	}
-	
+	@Override
+	public String toString() {
+		return "Chat [name=" + name + ", time=" + time + ", text=" + text + ", chatId=" + chatId + ", toname=" + toname
+				+ "]";
+	}
+
 }
