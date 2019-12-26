@@ -46,7 +46,7 @@ public class UserText {
 //        return chat;
 //    }
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws Exception {
         new NewFrame();
     }
 }

@@ -17,7 +17,7 @@ public class ChatDaoImpl implements ChatDao{
 		int num = 0;
 		String sql = "";
 		try{
-			sql = "insert into chat(name,time,text,to) values(?,now(),?,?)";
+			sql = "insert into chat(name,time,text,id,to) values(?,now(),?,1,?)";
 			num = JDBCUtils.executeUpdate(sql,chat.getName(),chat.getText(),chat.getTo());
 		}catch(Exception e){
 			throw e;

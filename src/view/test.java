@@ -16,11 +16,11 @@ import service.UserServiceImpl;
 
 public class test {
 
-	public static void main(String[] args) {
-		new NewFrame();
-
+	public static void main(String[] args) throws Exception {
+//		new NewFrame();
+//
 		ChatService chatservice=new ChatServiceImpl();
-		Chat c1=new Chat("2","","nihaoya");
+		Chat c1=new Chat("2","","nihaoya",1,"yangyang");
 		try {
 			System.out.println(chatservice.addChat(c1));
 		} catch (SQLException e) {
@@ -52,16 +52,16 @@ public class test {
 //		}
 //
 //		//TODO **************************************
-		List list=new ArrayList<>();
+//		List list=new ArrayList<>();
+////
+//		try {
+//			list=userservice.getAllUsers();
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		System.out.println(((User)list.get(1)).getUsername());
 //
-		try {
-			list=userservice.getAllUsers();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println(((User)list.get(1)).getUsername());
-		
 //		
 //		try {
 //			count1=userservice.select(u1);

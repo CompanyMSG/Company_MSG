@@ -11,6 +11,8 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -33,12 +35,15 @@ public class NewFrame extends JFrame {
 	JScrollPane jspane1;    //定义滚动窗格
 	JTextArea jta2;
 	JScrollPane jspane2;
-
 	JPanel jp2;
 	JButton jb1, jb2;    //定义按钮
 	JComboBox jcb1;        //定义下拉框
+	//User
+	User u1 = new User();
+	UserService userservice=new UserServiceImpl();
+	public String toname = new String();
 
-	public NewFrame() {
+	public NewFrame() throws Exception {
 		//创建组件
 		//上部组件
 		jp1 = new JPanel();    //创建面板
@@ -58,8 +63,30 @@ public class NewFrame extends JFrame {
 		jp2 = new JPanel();
 		jb1 = new JButton("关闭");        //创建按钮
 		jb2 = new JButton("发送");
-		String [] name= {"范闲","范若若","司理理","陈萍萍","林婉儿"};
+
+		List list = new ArrayList<>();
+		list = userservice.getAllUsers();
+
+		String [] name= new String[list.size()+1];
+		name[0] = "all";
+		for(int i = 1;i<list.size();i++){
+			name[i] = ((User)list.get(i-1)).getUsername();
+		}
+
 		jcb1=new JComboBox(name);	//创建下拉框
+
+		// 添加条目选中状态改变的监听器
+		jcb1.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				// 只处理选中的状态
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+//					System.out.println("选中: " + jcb1.getSelectedIndex() + " = " + jcb1.getSelectedItem());
+					toname = (String) jcb1.getSelectedItem();
+				}
+			}
+		});
+
 
 		//设置布局管理
 		jp1.setLayout(new BorderLayout());    //设置面板布局
@@ -85,10 +112,10 @@ public class NewFrame extends JFrame {
 		jb1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
-				User u1 = new User();
+
 				u1.setUsername(LoginOld.username);
 				u1.setOnLine(false);
-				UserService userservice=new UserServiceImpl();
+
 				try {
 					userservice.updateUser(u1);
 				} catch (Exception e) {
@@ -106,7 +133,7 @@ public class NewFrame extends JFrame {
 				SimpleDateFormat ft = new SimpleDateFormat("MM-dd hh:mm:ss");
 				String string = "【" + ft.format(dNow) + "】" + "\n" + name + "：";
 				//提交信息
-				Chat chat = new Chat(name, "", jta2.getText());
+				Chat chat = new Chat(name, "", jta2.getText(),1,toname);
 				ChatService chatservice = new ChatServiceImpl();
 				try {
 					System.out.println(chatservice.addChat(chat));
@@ -141,11 +168,18 @@ public class NewFrame extends JFrame {
 					if (list.size() != 0 ) {
 						for (int i = 0; i < list.size(); i++) {
 							chat1 = (Chat) list.get(i);
-							String line1 = "【" + chat1.getTime() + "】\n" + chat1.getName() + "： " + chat1.getText();
+
+							//判断序列
 							if((((Chat) list.get(i)).getChatId() > num)){
-								jta1.append(line1 + "\n");
-								jta2.setText(" ");
-								num ++ ;
+							    if(((Chat) list.get(i)).getTo() == LoginOld.username || ((Chat) list.get(i)).getTo() == "all"){
+                                    String line1 = "【" + chat1.getTime() + "】\n" + chat1.getName() + " to " + chat1.getTo() + "： " + chat1.getText();
+                                    jta1.append(line1 + "\n");
+                                    jta2.setText(" ");
+                                    num ++ ;
+                                }
+//							    else if(((Chat) list.get(i)).getName() == LoginOld.username){
+//
+//                                }
 							}
 						}
 					}
